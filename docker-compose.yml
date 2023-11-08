@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  db:
+    build: db/.
+    hostname: db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  omega:
+    build: "server/."
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - userdata:/home/CEO
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongodata:/data/db"
+
+  mongo-express:
+    image: mongo-express
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env
+
+volumes:
+  userdata:
+  database:
+  mongodata:
