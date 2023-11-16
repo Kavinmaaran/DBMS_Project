@@ -1,4 +1,4 @@
-# DeltaTask3_SysAd
+# DBMS_PROJECT
 
 ### Commands to be executed for docker-compose
 
@@ -8,12 +8,11 @@
 to stop containers: ``docker-compose down``   
 
 Add a host to your local machine:   
-      1. Windows : add ``127.0.0.1 omegabank.local`` to **c:\Windows\System32\Drivers\etc\hosts** file    
-      2. Linux : add 127.0.0.1  ``omegabank.local``  to **/etc/hosts** file
+      1. Windows : add ``127.0.0.1 omegaquiz.local`` to **c:\Windows\System32\Drivers\etc\hosts** file    
+      2. Linux : add 127.0.0.1  ``omegaquiz.local``  to **/etc/hosts** file
 #### URL :
 adminer : localhost:8080    
-server : http://omegabank.local      
-         http://omegabank.local/Statistics   
+server : http://omegaquiz.local         
 
 sign in as root in adminer and import the database.  
 
@@ -25,13 +24,6 @@ for root
 username:root     
 password:example
 
-for bank manager(user with only read permissions)  
-
-username:omega   
-password:omega  
-
-
 For web login passwd:   
 ACC0001 - ACC0050 : example  
-Branch1_manager - Branch4_manager : example  
-CEO : example  
+Proffessor1 - Professor4 : example 
