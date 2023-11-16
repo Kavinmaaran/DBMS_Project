@@ -7,6 +7,24 @@ class User
         $this->username = $username;
     }
 
+    public static function signup($user,$pass, $privilege)
+    {
+        $options = ['cost' => 9, ];
+        $pass = password_hash($pass, PASSWORD_BCRYPT, $options);
+        $conn=Database::getConnection();
+        $sql ="INSERT INTO `User_data` (`username`, `password`, `branch`, `privilage`, `balance`)
+               VALUES ('$user', '$pass', 'branch1', '$privilege','500');";
+        $error=false;
+        if ($conn->query($sql) === true) {
+            $error=false;
+        } else {
+            $error=$conn->connect_error;
+        }
+
+        //$conn->close();
+        return $error;
+    }
+
     public static function login($user, $pass)
     {
         $query = "SELECT * FROM `User_data` WHERE `username` = '$user'";

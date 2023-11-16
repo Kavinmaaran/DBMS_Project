@@ -22,6 +22,7 @@ include "libs/load.php";
 
     <script
         src="<?=get_config("base_name")?>assets/dist/js/bootstrap.bundle.min.js">
+        src="<?=get_config("base_name")?>js/login.js">
     </script>
 
 

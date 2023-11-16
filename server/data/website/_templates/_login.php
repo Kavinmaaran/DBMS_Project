@@ -29,7 +29,7 @@ if ($rememberMe=="remember") {
     header("Location: http://".get_config("base_path")."index", true, 301);
     exit();
 } else {?>
-<main class="form-signin">
+<!-- <main class="form-signin">
     <form action="login" method="post">
     <h1 class="h1 m-5 fw-normal"><strong>Omega</strong></h1>
         <h2 class="h2 mb-3 fw-normal">Please sign in</h2>
@@ -49,7 +49,26 @@ if ($rememberMe=="remember") {
         </div>
         <button class="w-100 btn btn-lg btn-primary hvr-buzz-out" type="submit">Sign in</button>
     </form>
-</main>
+</main> -->
+<section class="container">
+    <div class="login-container">
+        <div class="circle circle-one"></div>
+        <div class="form-container">
+            <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+            <h1 class="opacity">LOGIN</h1>
+            <form method="post">
+                <input type="text" name="username" placeholder="USERNAME" />
+                <input type="password" name="password" placeholder="PASSWORD" />
+                <button class="opacity">SUBMIT</button>
+            </form>
+            <div class="register-forget opacity">
+                <a href="http://omegaquiz.local/signup">REGISTER</a>
+            </div>
+        </div>
+        <div class="circle circle-two"></div>
+    </div>
+    <div class="theme-btn-container"></div>
+</section>
 
 <?}
     ?>

@@ -21,7 +21,6 @@ if($userobj->getPrivilage()==2){
     }else{
         for($i = 0; $i < Session::get('quiz_size'); $i++){
             if (isset($_POST['question_'.$i+1]) and isset($_POST['option_a_'.$i+1]) and isset($_POST['option_b_'.$i+1]) and isset($_POST['option_c_'.$i+1]) and isset($_POST['option_d_'.$i+1]) and isset($_POST['answer_'.$i+1]) ) {
-                echo "hi";
                 $question=$_POST["question_".$i+1];
                 $option_a=$_POST["option_a_".$i+1];
                 $option_b=$_POST["option_b_".$i+1];
@@ -84,13 +83,25 @@ if($userobj->getPrivilage()==2){
     $conn = Database::getMongoConnection();
     // $collections = $conn->test->getCollections();
     // print_r($collections);
-    foreach( $conn->test->listCollections() as $c){?>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"><?=$c['name']?></h5>
-    <a href="<?=get_config("base_name")?>quizlist?quizname=<?=$c['name'];?>" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div><?
+    foreach( $conn->test->listCollections() as $c){
+        $conn = Database::getFireConnection();
+$database = $conn->createDatabase();
+$reference = $database->getReference($username);
+
+$snapshot = $reference->getSnapshot();
+$history = $snapshot->getValue();
+// print_r($c);
+if (is_null($history) or (!array_key_exists($c['name'],$history)))
+  {
+// var_dump($history);
+?>
+        <div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><?=$c['name']?></h5>
+        <a href="<?=get_config("base_name")?>quizlist?quizname=<?=$c['name'];?>" class="btn btn-primary">Start Quiz</a>
+    </div>
+    </div><?}
+    
 }
 }
 
